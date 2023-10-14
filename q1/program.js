@@ -195,3 +195,114 @@ function createIdPassword(lname, fname) {
      
      return outArray
  }
+
+// #10
+/* Write a function named myReverse that takes a line of words as a paramter, reverses the 
+order of words, reverses the order of characters in every other word, and returns the result. The 
+input and the output are strings. The words are separated by single spaces in the input and the 
+output. For example if the line of words is tree is big green then the result is neerg 
+big si tree
+*/
+
+function myReverse(line)
+{
+	// convert to array
+	line = line.split(" ")
+
+	// reverse order of words
+	for(let i = 0; i < Math.floor(line.length / 2); i++)
+	{
+		let temp = line[i]
+		line[i] = line[line.length - 1 - i]
+		line[line.length - 1 - i] = temp
+	}
+
+	// reverse order of characters in every other word
+	for(let i = 0; i < line.length; i++)
+	{
+		if(i % 2 == 0) // only every other word
+		{
+			let temp = ""
+			for(let j = line[i].length - 1; j >= 0; j--)
+			{
+				temp += line[i].charAt(j)
+			}
+			line[i] = temp
+		}
+	}
+
+	// convert back to string
+	let outLine = ""
+	for(let i = 0; i < line.length; i++)
+	{
+		outLine += line[i] + " "
+	}
+	outLine = outLine.trim()
+	return outLine
+}
+
+
+// #12
+/* Write a class called Student. The class has two properties called name and gpa. The class 
+has a constructor that takes a name and a gpa and set them to the properties of the class. The 
+class getName, getGpa, setName, and setGpa methods that get and set name and gpa. The 
+class has isHonors method which returns true/false depending on whether gpa is above 
+or below 3. The class has toString method that returns a string containing name and gpa
+*/
+
+class Student
+{
+	// constructor
+	constructor(name, gpa)
+	{
+		this.name = name 
+		this.age = age
+	}
+	
+	// getters
+	getName()
+	{
+		return this.name
+	}	
+	getGpa()
+	{
+		return this.gpa
+	}
+	
+	// setters
+	setName(name)
+	{
+		this.name = name
+	}
+	setGpa(gpa)
+	{
+		this.gpa = gpa
+	}
+	
+	// says whether student is honors or no
+	isHonors()
+	{
+		return gpa > 3
+	}
+
+	// toString, print 
+	toString()
+	{
+		return "Name: " + name + "\tGPA: " + gpa + "\t"
+	}
+}
+
+// #14
+/* Write a function named fullName that takes a string as a parameter and decides whether it 
+ is a full name of a person. The full name format is Prefix First M. Last. Prefix is Mr, 
+ Mrs, or Ms. First is the first name that begins in upper case letter followed by one or more lower 
+ case letters with a total length of at least two. M is the middle initial which is a single upper case 
+ letter. Last is the last name which has the same format as the first name. There is a dot after the 
+ middle initial. There is one space between prefix, first name, middle initial, and last name. The
+ function returns true/false. The code must be based on regular expressions
+ */
+
+function fullName(name)
+{
+	return name.search(/^Mr?s? [A-Z][a-z]+ [A-Z]\. [A-Z][a-z]+$/) == 0 // returns true if name matches that format, false otherwise
+}
